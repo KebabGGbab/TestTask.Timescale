@@ -10,7 +10,7 @@ namespace TestTask.Timescale.SharedKernel.Domain.Results
         {
             get
             {
-                TryGetValueFromFailureResultDomainException.ThrowIfFailure(IsFailure);
+                TryGetValueFromFailureResultDomainException.ThrowIfFailure(this.IsFailure);
 
                 return _value!;
             }
