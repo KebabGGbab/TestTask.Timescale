@@ -2,4 +2,14 @@
   <Folder Name="/Solution Items/">
     <File Path="README.md" />
   </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/TestTask.Timescale.Application/TestTask.Timescale.Application.csproj" />
+    <Project Path="src/TestTask.Timescale.Domain/TestTask.Timescale.Domain.csproj" />
+    <Project Path="src/TestTask.Timescale.Infrastructure/TestTask.Timescale.Infrastructure.csproj" />
+    <Project Path="src/TestTask.Timescale.WebApi/TestTask.Timescale.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/src/SharedKernel/">
+    <Project Path="src/SharedKernel/TestTask.Timescale.SharedKernel.Domain/TestTask.Timescale.SharedKernel.Domain.csproj" />
+    <Project Path="src/SharedKernel/TestTask.Timescale.SharedKernel.Infrastructure/TestTask.Timescale.SharedKernel.Infrastructure.csproj" />
+  </Folder>
 </Solution>
