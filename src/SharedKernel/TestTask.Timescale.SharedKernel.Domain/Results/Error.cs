@@ -1,8 +1,10 @@
-﻿namespace TestTask.Timescale.SharedKernel.Domain.Results
+﻿using System.Collections.Immutable;
+
+namespace TestTask.Timescale.SharedKernel.Domain.Results
 {
     public class Error
     {
-        private static readonly IReadOnlyDictionary<string, object> _emptyDetails = new Dictionary<string, object>().AsReadOnly();
+        private static readonly IReadOnlyDictionary<string, object> _emptyDetails = ImmutableDictionary<string, object>.Empty;
 
         public string Message { get; }
 
