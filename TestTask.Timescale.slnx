@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/Solution Items/">
+    <File Path="global.json" />
     <File Path="README.md" />
   </Folder>
   <Folder Name="/src/">
@@ -11,5 +12,15 @@
   <Folder Name="/src/SharedKernel/">
     <Project Path="src/SharedKernel/TestTask.Timescale.SharedKernel.Domain/TestTask.Timescale.SharedKernel.Domain.csproj" />
     <Project Path="src/SharedKernel/TestTask.Timescale.SharedKernel.Infrastructure/TestTask.Timescale.SharedKernel.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/TestTask.Timescale.Application.Test/TestTask.Timescale.Application.Test.csproj" />
+    <Project Path="tests/TestTask.Timescale.Domain.Test/TestTask.Timescale.Domain.Test.csproj" />
+    <Project Path="tests/TestTask.Timescale.Infrastructure.Test/TestTask.Timescale.Infrastructure.Test.csproj" />
+    <Project Path="tests/TestTask.Timescale.WebApi.Test/TestTask.Timescale.WebApi.Test.csproj" />
+  </Folder>
+  <Folder Name="/tests/SharedKernel/">
+    <Project Path="tests/SharedKernel/TestTask.Timescale.SharedKernel.Domain.Test/TestTask.Timescale.SharedKernel.Domain.Test.csproj" />
+    <Project Path="tests/SharedKernel/TestTask.Timescale.SharedKernel.Infrastructure.Test/TestTask.Timescale.SharedKernel.Infrastructure.Test.csproj" />
   </Folder>
 </Solution>
