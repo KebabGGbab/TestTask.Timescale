@@ -8,4 +8,8 @@
     <TestingExtensionsProfile>None</TestingExtensionsProfile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\TestTask.Timescale.Infrastructure\TestTask.Timescale.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

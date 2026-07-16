@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SharedKernel\TestTask.Timescale.SharedKernel.Infrastructure\TestTask.Timescale.SharedKernel.Infrastructure.csproj" />
+    <ProjectReference Include="..\TestTask.Timescale.Domain\TestTask.Timescale.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
