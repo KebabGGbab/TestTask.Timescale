@@ -70,6 +70,15 @@ namespace TestTask.Timescale.Domain.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на The number of dimensions must be at least 1 and no more than 10000. The current value is &quot;{0}&quot;..
+        /// </summary>
+        internal static string TimeScaleCountRecordOutOfRange {
+            get {
+                return ResourceManager.GetString("TimeScaleCountRecordOutOfRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на The indicator value cannot be less than 0. The current value is: &quot;{0}&quot;..
         /// </summary>
         internal static string TimeScaleRecordValueLessThanZero {

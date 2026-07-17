@@ -129,4 +129,7 @@
   <data name="TimestampIsLittle" xml:space="preserve">
     <value>The start date must be greater than or equal to "01/01/2000". The resulting date is "{0}".</value>
   </data>
+  <data name="TimeScaleCountRecordOutOfRange" xml:space="preserve">
+    <value>The number of dimensions must be at least 1 and no more than 10000. The current value is "{0}".</value>
+  </data>
 </root>
