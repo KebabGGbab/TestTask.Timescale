@@ -132,4 +132,7 @@
   <data name="TimeScaleCountRecordOutOfRange" xml:space="preserve">
     <value>The number of dimensions must be at least 1 and no more than 10000. The current value is "{0}".</value>
   </data>
+  <data name="TimestampIsNotUtc" xml:space="preserve">
+    <value>The start date and time must be specified in UTC format.</value>
+  </data>
 </root>

@@ -24,3 +24,11 @@ public class TimestampIsLittleError : Error
     {
     }
 }
+
+public class TimestampIsNotUtcError : Error
+{
+    public TimestampIsNotUtcError()
+        : base(ErrorMessages.TimestampIsNotUtc)
+    {
+    }
+}

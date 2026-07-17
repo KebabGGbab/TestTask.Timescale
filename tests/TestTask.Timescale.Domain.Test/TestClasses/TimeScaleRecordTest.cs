@@ -9,7 +9,7 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         [TestMethod]
         public void CanCreate_AllPropertiesValid_Success()
         {
-            DateTime date = new(2020, 01, 01);
+            DateTime date = new(2020, 01, 01, 0, 0, 0, DateTimeKind.Utc);
             double seconds = 2.3d;
             double value = 2.3d;
 
@@ -24,7 +24,7 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         [DataRow(1999, 2.3, 1)]
         public void CanCreate_SomePropertiesNotValid_Fail(int year, double seconds, double value)
         {
-            DateTime date = new(year, 01, 01);
+            DateTime date = new(year, 01, 01, 0, 0, 0, DateTimeKind.Utc);
 
             Result result = TimeScaleRecord.CanCreate(date, seconds, value);
 
@@ -34,7 +34,7 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         [TestMethod]
         public void Create_AllPropertiesValid_ObjectWithCorrectValueObject()
         {
-            DateTime date = new(2020, 01, 01);
+            DateTime date = new(2020, 01, 01, 0, 0, 0, DateTimeKind.Utc);
             double seconds = 2.3d;
             double value = 2.3d;
             Timestamp expectedDate = Timestamp.Create(date).Value;
@@ -54,7 +54,7 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         [DataRow(1999, 2.3, 1)]
         public void Create_SomePropertiesNotValid_Fail(int year, double seconds, double value)
         {
-            DateTime date = new(year, 01, 01);
+            DateTime date = new(year, 01, 01, 0, 0, 0, DateTimeKind.Utc);
 
             Result<TimeScaleRecord> result = TimeScaleRecord.Create(date, seconds, value);
 

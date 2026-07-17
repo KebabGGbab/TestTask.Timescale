@@ -6,7 +6,7 @@ namespace TestTask.Timescale.Domain.Aggregates.TimeScaleAggregate
 {
     public class Timestamp : ValueObject
     {
-        private static readonly DateTime MinDate = new(2000, 01, 01);
+        private static readonly DateTime MinDate = new(2000, 01, 01, 0, 0, 0, DateTimeKind.Utc);
 
         // С тем учётом, что формат задан как "ГГГГ-ММ-ДДTчч-мм-сс.ммммZ", предположу,
         // что часовой пояс не важен, так как формат соответствует UTC.
@@ -19,6 +19,11 @@ namespace TestTask.Timescale.Domain.Aggregates.TimeScaleAggregate
 
         public static Result CanCreate(DateTime value)
         {
+            if (value.Kind != DateTimeKind.Utc)
+            {
+                return Result.Fail(new TimestampIsNotUtcError());
+            }
+
             if (value > DateTime.UtcNow)
             {
                 return Result.Fail(new TimestampIsBigError(value));

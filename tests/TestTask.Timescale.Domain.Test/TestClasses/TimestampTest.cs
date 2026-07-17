@@ -9,7 +9,7 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         [TestMethod]
         public void CanCreate_DateInRange_Success()
         {
-            DateTime date = new(2020, 01, 01);
+            DateTime date = new(2020, 01, 01, 0, 0, 0, DateTimeKind.Utc);
 
             Result result = Timestamp.CanCreate(date);
 
@@ -21,7 +21,17 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         [DataRow(9999)]
         public void CanCreate_DateOutRange_Fail(int year)
         {
-            DateTime date = new(year, 01, 01);
+            DateTime date = new(year, 01, 01, 0, 0, 0, DateTimeKind.Utc);
+
+            Result result = Timestamp.CanCreate(date);
+
+            Assert.IsTrue(result.IsFailure);
+        }
+
+        [TestMethod]
+        public void CanCreate_DateTimeIsNotUtc_Fail()
+        {
+            DateTime date = new(2020, 01, 01, 0, 0, 0, DateTimeKind.Local);
 
             Result result = Timestamp.CanCreate(date);
 
@@ -31,7 +41,7 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         [TestMethod]
         public void Create_DateInRange_ObjectWithPassedDateTime()
         {
-            DateTime date = new(2020, 01, 01);
+            DateTime date = new(2020, 01, 01, 0, 0, 0, DateTimeKind.Utc);
 
             Result<Timestamp> result = Timestamp.Create(date);
 
@@ -43,7 +53,17 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         [DataRow(9999)]
         public void Create_DateOutRange_Fail(int year)
         {
-            DateTime date = new(year, 01, 01);
+            DateTime date = new(year, 01, 01, 0, 0, 0, DateTimeKind.Utc);
+
+            Result<Timestamp> result = Timestamp.Create(date);
+
+            Assert.IsTrue(result.IsFailure);
+        }
+
+        [TestMethod]
+        public void Create_DateTimeIsNotUtc_Fail()
+        {
+            DateTime date = new(2020, 01, 01, 0, 0, 0, DateTimeKind.Local);
 
             Result<Timestamp> result = Timestamp.Create(date);
 

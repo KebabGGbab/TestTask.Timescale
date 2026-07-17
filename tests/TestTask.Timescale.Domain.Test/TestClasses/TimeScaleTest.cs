@@ -10,8 +10,8 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         public void CanCreate_CountRecordsInRange_Success()
         {
             List<TimeScaleRecord> records = [
-                TimeScaleRecord.Create(new DateTime(2020, 01, 01), 2.3, 5).Value,
-                TimeScaleRecord.Create(new DateTime(2020, 01, 01), 3, 4).Value
+                TimeScaleRecord.Create(new DateTime(2020, 01, 01, 0, 0, 0, DateTimeKind.Utc), 2.3, 5).Value,
+                TimeScaleRecord.Create(new DateTime(2020, 01, 01, 0, 0, 0, DateTimeKind.Utc), 3, 4).Value
             ];
 
             Result result = TimeScale.CanCreate(records);
@@ -43,8 +43,8 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         public void Create_CountRecordsInRange_ObjecyWithPassedRecordsAndFileName()
         {
             List<TimeScaleRecord> records = [
-                TimeScaleRecord.Create(new DateTime(2020, 01, 01), 2.3, 5).Value,
-                TimeScaleRecord.Create(new DateTime(2020, 01, 01), 3, 4).Value
+                TimeScaleRecord.Create(new DateTime(2020, 01, 01, 0, 0, 0, DateTimeKind.Utc), 2.3, 5).Value,
+                TimeScaleRecord.Create(new DateTime(2020, 01, 01, 0, 0, 0, DateTimeKind.Utc), 3, 4).Value
             ];
             string fileName = "test.csv";
 

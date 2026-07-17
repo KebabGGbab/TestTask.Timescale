@@ -104,5 +104,14 @@ namespace TestTask.Timescale.Domain.Resources {
                 return ResourceManager.GetString("TimestampIsLittle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The start date and time must be specified in UTC format..
+        /// </summary>
+        internal static string TimestampIsNotUtc {
+            get {
+                return ResourceManager.GetString("TimestampIsNotUtc", resourceCulture);
+            }
+        }
     }
 }
