@@ -45,7 +45,7 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         {
             DateTime date = new(year, 01, 01);
 
-            Result result = Timestamp.CanCreate(date);
+            Result<Timestamp> result = Timestamp.Create(date);
 
             Assert.IsTrue(result.IsFailure);
         }
