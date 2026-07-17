@@ -117,10 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ExecutionTimeLessThanZero" xml:space="preserve">
+  <data name="ExecutionDurationLessThanZero" xml:space="preserve">
     <value>The execution time cannot be less than 0. The current value is: "{0}".</value>
   </data>
-  <data name="TimeScaleRecordValueLessThanZero" xml:space="preserve">
+  <data name="RecordValueLessThanZero" xml:space="preserve">
     <value>The indicator value cannot be less than 0. The current value is: "{0}".</value>
   </data>
   <data name="TimestampIsBig" xml:space="preserve">

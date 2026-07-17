@@ -9,15 +9,15 @@ namespace TestTask.Timescale.Domain.Aggregates.TimeScaleAggregate
         // Каких либо требований нет, поэтому запишу как обычную строку.
         public string FileName { get; }
 
-        public IReadOnlyCollection<TimeScaleRecord> Records { get; }
+        public IReadOnlyCollection<Record> Records { get; }
 
-        private TimeScale(ICollection<TimeScaleRecord> records, string fileName)
+        private TimeScale(ICollection<Record> records, string fileName)
         {
             Records = records.ToArray().AsReadOnly();
             FileName = fileName;
         }
 
-        public static Result CanCreate(ICollection<TimeScaleRecord> records)
+        public static Result CanCreate(ICollection<Record> records)
         {
             if (records is { Count: < 1 or > 10_000})
             {
@@ -27,7 +27,7 @@ namespace TestTask.Timescale.Domain.Aggregates.TimeScaleAggregate
             return Result.Ok();
         }
 
-        public static Result<TimeScale> Create(ICollection<TimeScaleRecord> records, string fileName)
+        public static Result<TimeScale> Create(ICollection<Record> records, string fileName)
         {
             Result canCreate = CanCreate(records);
 

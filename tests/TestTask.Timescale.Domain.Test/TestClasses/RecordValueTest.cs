@@ -4,14 +4,14 @@ using TestTask.Timescale.SharedKernel.Domain.Results;
 namespace TestTask.Timescale.Domain.Test.TestClasses
 {
     [TestClass]
-    public class TimeScaleRecordValueTest
+    public class RecordValueTest
     {
         [TestMethod]
         [DataRow(0)]
         [DataRow(2.3d)]
         public void CanCreate_ValueMoreThenZero_Success(double value)
         {
-            Result result = TimeScaleRecordValue.CanCreate(value);
+            Result result = RecordValue.CanCreate(value);
 
             Assert.IsTrue(result.IsSuccess);
         }
@@ -21,7 +21,7 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         {
             double value = -2.3d;
 
-            Result result = TimeScaleRecordValue.CanCreate(value);
+            Result result = RecordValue.CanCreate(value);
 
             Assert.IsTrue(result.IsFailure);
         }
@@ -31,7 +31,7 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         [DataRow(2.3d)]
         public void Create_ValueMoreThenZero_ObjectWithPassedSeconds(double value)
         {
-            Result<TimeScaleRecordValue> result = TimeScaleRecordValue.Create(value);
+            Result<RecordValue> result = RecordValue.Create(value);
 
             Assert.AreEqual(value, result.Value.Indicator);
         }
@@ -41,7 +41,7 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         {
             double value = -2.3d;
 
-            Result<TimeScaleRecordValue> result = TimeScaleRecordValue.Create(value);
+            Result<RecordValue> result = RecordValue.Create(value);
 
             Assert.IsTrue(result.IsFailure);
         }

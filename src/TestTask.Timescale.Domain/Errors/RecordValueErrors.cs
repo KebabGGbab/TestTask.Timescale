@@ -5,11 +5,11 @@ using TestTask.Timescale.SharedKernel.Domain.Results;
 
 namespace TestTask.Timescale.Domain.Errors;
 
-public class TimeScaleRecordValueErrors : Error
+public class RecordValueErrors : Error
 {
-    private static readonly CompositeFormat _messageFormat = CompositeFormat.Parse(ErrorMessages.TimeScaleRecordValueLessThanZero);
+    private static readonly CompositeFormat _messageFormat = CompositeFormat.Parse(ErrorMessages.RecordValueLessThanZero);
 
-    public TimeScaleRecordValueErrors(double actual)
+    public RecordValueErrors(double actual)
         : base(string.Format(CultureInfo.InvariantCulture, _messageFormat, actual))
     {
     }

@@ -4,11 +4,11 @@ using TestTask.Timescale.SharedKernel.Domain.Results;
 
 namespace TestTask.Timescale.Domain.Aggregates.TimeScaleAggregate
 {
-    public class ExecutionTime : ValueObject
+    public class ExecutionDuration : ValueObject
     {
         public double Seconds { get; }
 
-        private ExecutionTime(double seconds)
+        private ExecutionDuration(double seconds)
         {
             Seconds = seconds;
         }
@@ -17,22 +17,22 @@ namespace TestTask.Timescale.Domain.Aggregates.TimeScaleAggregate
         {
             if (seconds < 0)
             {
-                return Result.Fail(new ExecutionTimeErrors(seconds));
+                return Result.Fail(new ExecutionDurationErrors(seconds));
             }
 
             return Result.Ok();
         }
 
-        public static Result<ExecutionTime> Create(double seconds)
+        public static Result<ExecutionDuration> Create(double seconds)
         {
             Result canCreate = CanCreate(seconds);
 
             if (canCreate.IsFailure)
             {
-                return Result.Fail<ExecutionTime>(canCreate.Errors);
+                return Result.Fail<ExecutionDuration>(canCreate.Errors);
             }
 
-            return Result.Ok(new ExecutionTime(seconds));
+            return Result.Ok(new ExecutionDuration(seconds));
         }
 
         protected override IEnumerable<object> GetEqualityComponents()

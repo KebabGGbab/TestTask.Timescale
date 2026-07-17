@@ -4,14 +4,14 @@ using TestTask.Timescale.SharedKernel.Domain.Results;
 namespace TestTask.Timescale.Domain.Test.TestClasses
 {
     [TestClass]
-    public class ExecutionTimeTest
+    public class ExecutionDurationTest
     {
         [TestMethod]
         [DataRow(0)]
         [DataRow(2.3d)]
         public void CanCreate_CountSecondsMoreThenZero_Success(double seconds)
         {
-            Result result = ExecutionTime.CanCreate(seconds);
+            Result result = ExecutionDuration.CanCreate(seconds);
 
             Assert.IsTrue(result.IsSuccess);
         }
@@ -21,7 +21,7 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         {
             double seconds = -2.3d;
 
-            Result result = ExecutionTime.CanCreate(seconds);
+            Result result = ExecutionDuration.CanCreate(seconds);
 
             Assert.IsTrue(result.IsFailure);
         }
@@ -31,7 +31,7 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         [DataRow(2.3d)]
         public void Create_CountSecondsMoreThenZero_ObjectWithPassedSeconds(double seconds)
         {
-            Result<ExecutionTime> result = ExecutionTime.Create(seconds);
+            Result<ExecutionDuration> result = ExecutionDuration.Create(seconds);
 
             Assert.AreEqual(seconds, result.Value.Seconds);
         }
@@ -41,7 +41,7 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         {
             double seconds = -2.3d;
 
-            Result<ExecutionTime> result = ExecutionTime.Create(seconds);
+            Result<ExecutionDuration> result = ExecutionDuration.Create(seconds);
 
             Assert.IsTrue(result.IsFailure);
         }

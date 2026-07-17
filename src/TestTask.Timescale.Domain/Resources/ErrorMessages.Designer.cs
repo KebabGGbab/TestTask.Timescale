@@ -63,9 +63,18 @@ namespace TestTask.Timescale.Domain.Resources {
         /// <summary>
         ///   Ищет локализованную строку, похожую на The execution time cannot be less than 0. The current value is: &quot;{0}&quot;..
         /// </summary>
-        internal static string ExecutionTimeLessThanZero {
+        internal static string ExecutionDurationLessThanZero {
             get {
-                return ResourceManager.GetString("ExecutionTimeLessThanZero", resourceCulture);
+                return ResourceManager.GetString("ExecutionDurationLessThanZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The indicator value cannot be less than 0. The current value is: &quot;{0}&quot;..
+        /// </summary>
+        internal static string RecordValueLessThanZero {
+            get {
+                return ResourceManager.GetString("RecordValueLessThanZero", resourceCulture);
             }
         }
         
@@ -75,15 +84,6 @@ namespace TestTask.Timescale.Domain.Resources {
         internal static string TimeScaleCountRecordOutOfRange {
             get {
                 return ResourceManager.GetString("TimeScaleCountRecordOutOfRange", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на The indicator value cannot be less than 0. The current value is: &quot;{0}&quot;..
-        /// </summary>
-        internal static string TimeScaleRecordValueLessThanZero {
-            get {
-                return ResourceManager.GetString("TimeScaleRecordValueLessThanZero", resourceCulture);
             }
         }
         

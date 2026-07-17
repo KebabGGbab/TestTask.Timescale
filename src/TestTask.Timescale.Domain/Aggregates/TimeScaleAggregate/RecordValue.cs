@@ -4,11 +4,11 @@ using TestTask.Timescale.SharedKernel.Domain.Results;
 
 namespace TestTask.Timescale.Domain.Aggregates.TimeScaleAggregate
 {
-    public class TimeScaleRecordValue : ValueObject
+    public class RecordValue : ValueObject
     {
         public double Indicator { get; }
 
-        private TimeScaleRecordValue(double indicator)
+        private RecordValue(double indicator)
         {
             Indicator = indicator;
         }
@@ -17,22 +17,22 @@ namespace TestTask.Timescale.Domain.Aggregates.TimeScaleAggregate
         {
             if (indicator < 0)
             {
-                return Result.Fail(new TimeScaleRecordValueErrors(indicator));
+                return Result.Fail(new RecordValueErrors(indicator));
             }
 
             return Result.Ok();
         }
 
-        public static Result<TimeScaleRecordValue> Create(double indicator)
+        public static Result<RecordValue> Create(double indicator)
         {
             Result canCreate = CanCreate(indicator);
 
             if (canCreate.IsFailure)
             {
-                return Result.Fail<TimeScaleRecordValue>(canCreate.Errors);
+                return Result.Fail<RecordValue>(canCreate.Errors);
             }
 
-            return Result.Ok(new TimeScaleRecordValue(indicator));
+            return Result.Ok(new RecordValue(indicator));
         }
 
         protected override IEnumerable<object> GetEqualityComponents()

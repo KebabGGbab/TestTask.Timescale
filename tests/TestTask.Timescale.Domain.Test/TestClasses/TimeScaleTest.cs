@@ -9,9 +9,9 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         [TestMethod]
         public void CanCreate_CountRecordsInRange_Success()
         {
-            List<TimeScaleRecord> records = [
-                TimeScaleRecord.Create(new DateTime(2020, 01, 01, 0, 0, 0, DateTimeKind.Utc), 2.3, 5).Value,
-                TimeScaleRecord.Create(new DateTime(2020, 01, 01, 0, 0, 0, DateTimeKind.Utc), 3, 4).Value
+            List<Record> records = [
+                Record.Create(new DateTime(2020, 01, 01, 0, 0, 0, DateTimeKind.Utc), 2.3, 5).Value,
+                Record.Create(new DateTime(2020, 01, 01, 0, 0, 0, DateTimeKind.Utc), 3, 4).Value
             ];
 
             Result result = TimeScale.CanCreate(records);
@@ -22,7 +22,7 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         [TestMethod]
         public void CanCreate_CountRecordsLessThanRange_Fail()
         {
-            List<TimeScaleRecord> records = [];
+            List<Record> records = [];
 
             Result result = TimeScale.CanCreate(records);
 
@@ -32,7 +32,7 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         [TestMethod]
         public void CanCreate_CountRecordsMoreThanRange_Fail()
         {
-            TimeScaleRecord[] records = new TimeScaleRecord[10_001];
+            Record[] records = new Record[10_001];
 
             Result result = TimeScale.CanCreate(records);
 
@@ -42,9 +42,9 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         [TestMethod]
         public void Create_CountRecordsInRange_ObjecyWithPassedRecordsAndFileName()
         {
-            List<TimeScaleRecord> records = [
-                TimeScaleRecord.Create(new DateTime(2020, 01, 01, 0, 0, 0, DateTimeKind.Utc), 2.3, 5).Value,
-                TimeScaleRecord.Create(new DateTime(2020, 01, 01, 0, 0, 0, DateTimeKind.Utc), 3, 4).Value
+            List<Record> records = [
+                Record.Create(new DateTime(2020, 01, 01, 0, 0, 0, DateTimeKind.Utc), 2.3, 5).Value,
+                Record.Create(new DateTime(2020, 01, 01, 0, 0, 0, DateTimeKind.Utc), 3, 4).Value
             ];
             string fileName = "test.csv";
 
@@ -58,7 +58,7 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         [TestMethod]
         public void Create_CountRecordsLessThanRange_Fail()
         {
-            List<TimeScaleRecord> records = [];
+            List<Record> records = [];
             string fileName = "test.csv";
 
             Result<TimeScale> result = TimeScale.Create(records, fileName);
@@ -69,7 +69,7 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         [TestMethod]
         public void Create_CountRecordsMoreThanRange_Fail()
         {
-            TimeScaleRecord[] records = new TimeScaleRecord[10_001];
+            Record[] records = new Record[10_001];
             string fileName = "test.csv";
 
             Result<TimeScale> result = TimeScale.Create(records, fileName);

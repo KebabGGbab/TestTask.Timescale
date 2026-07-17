@@ -3,15 +3,15 @@ using TestTask.Timescale.SharedKernel.Domain.Results;
 
 namespace TestTask.Timescale.Domain.Aggregates.TimeScaleAggregate
 {
-    public class TimeScaleRecord : Entity
+    public class Record : Entity
     {
         public Timestamp Date { get; }
 
-        public ExecutionTime Time { get; }
+        public ExecutionDuration Time { get; }
 
-        public TimeScaleRecordValue Value { get; }
+        public RecordValue Value { get; }
 
-        private TimeScaleRecord(Timestamp date, ExecutionTime time, TimeScaleRecordValue value)
+        private Record(Timestamp date, ExecutionDuration time, RecordValue value)
         {
             Date = date;
             Time = time;
@@ -21,8 +21,8 @@ namespace TestTask.Timescale.Domain.Aggregates.TimeScaleAggregate
         public static Result CanCreate(DateTime date, double seconds, double value)
         {
             Result timestamp = Timestamp.CanCreate(date);
-            Result time = ExecutionTime.CanCreate(seconds);
-            Result unitValue = TimeScaleRecordValue.CanCreate(value);
+            Result time = ExecutionDuration.CanCreate(seconds);
+            Result unitValue = RecordValue.CanCreate(value);
 
             if (timestamp.IsFailure || time.IsFailure || unitValue.IsFailure)
             {
@@ -34,19 +34,19 @@ namespace TestTask.Timescale.Domain.Aggregates.TimeScaleAggregate
             return Result.Ok();
         }
 
-        public static Result<TimeScaleRecord> Create(DateTime date, double seconds, double value)
+        public static Result<Record> Create(DateTime date, double seconds, double value)
         {
             Result canCreate = CanCreate(date, seconds, value);
 
             if (canCreate.IsFailure)
             {
-                return Result.Fail<TimeScaleRecord>(canCreate.Errors);
+                return Result.Fail<Record>(canCreate.Errors);
             }
 
-            return Result.Ok(new TimeScaleRecord(
+            return Result.Ok(new Record(
                 Timestamp.Create(date).Value, 
-                ExecutionTime.Create(seconds).Value, 
-                TimeScaleRecordValue.Create(value).Value));
+                ExecutionDuration.Create(seconds).Value, 
+                RecordValue.Create(value).Value));
         }
     }
 }
