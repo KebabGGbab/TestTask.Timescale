@@ -1,8 +1,29 @@
-﻿namespace TestTask.Timescale.SharedKernel.Domain.BaseModels
+﻿using TestTask.Timescale.SharedKernel.Domain.Events;
+
+namespace TestTask.Timescale.SharedKernel.Domain.BaseModels
 {
     public abstract class AggregateRoot : Entity
     {
-        // На данный момент не требуются события или что-либо еще, что необходимо
-        // поместить в корень агрегата, поэтому сейчас этот класс просто маркер
+        private readonly List<IDomainEvent> _domainEvents;
+
+        public IReadOnlyList<IDomainEvent> Events { get; }
+
+        public AggregateRoot()
+        {
+            _domainEvents = [];
+            Events = _domainEvents.AsReadOnly();
+        }
+
+        protected void AddDomainEvent(IDomainEvent domainEvent)
+        {
+            ArgumentNullException.ThrowIfNull(domainEvent);
+
+            _domainEvents.Add(domainEvent);
+        }
+
+        public void ClearDomainEvents()
+        {
+            _domainEvents.Clear();
+        }
     }
 }
