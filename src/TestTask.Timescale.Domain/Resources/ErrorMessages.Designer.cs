@@ -70,6 +70,15 @@ namespace TestTask.Timescale.Domain.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на To calculate the metrics, the number of records must be greater than 0..
+        /// </summary>
+        internal static string MetricsCountRecordIsZero {
+            get {
+                return ResourceManager.GetString("MetricsCountRecordIsZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на The indicator value cannot be less than 0. The current value is: &quot;{0}&quot;..
         /// </summary>
         internal static string RecordValueLessThanZero {

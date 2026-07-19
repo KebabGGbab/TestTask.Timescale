@@ -135,4 +135,7 @@
   <data name="TimestampIsNotUtc" xml:space="preserve">
     <value>The start date and time must be specified in UTC format.</value>
   </data>
+  <data name="MetricsCountRecordIsZero" xml:space="preserve">
+    <value>To calculate the metrics, the number of records must be greater than 0.</value>
+  </data>
 </root>
