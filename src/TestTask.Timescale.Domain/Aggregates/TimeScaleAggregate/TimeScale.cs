@@ -1,4 +1,5 @@
-﻿using TestTask.Timescale.Domain.Errors;
+﻿using TestTask.Timescale.Domain.Aggregates.RecordAggregate;
+using TestTask.Timescale.Domain.Errors;
 using TestTask.Timescale.SharedKernel.Domain.BaseModels;
 using TestTask.Timescale.SharedKernel.Domain.Results;
 
@@ -19,7 +20,7 @@ namespace TestTask.Timescale.Domain.Aggregates.TimeScaleAggregate
 
         public static Result CanCreate(ICollection<Record> records)
         {
-            if (records is { Count: < 1 or > 10_000})
+            if (records is { Count: < 1 or > 10_000 })
             {
                 return Result.Fail(new TimeScaleCountRecordOutOfRangeError(records.Count));
             }

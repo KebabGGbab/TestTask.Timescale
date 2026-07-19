@@ -1,4 +1,5 @@
-﻿using TestTask.Timescale.Domain.Aggregates.TimeScaleAggregate;
+﻿using TestTask.Timescale.Domain.Aggregates.RecordAggregate;
+using TestTask.Timescale.Domain.Aggregates.TimeScaleAggregate;
 using TestTask.Timescale.SharedKernel.Domain.Results;
 
 namespace TestTask.Timescale.Domain.Test.TestClasses

@@ -1,9 +1,9 @@
 ﻿using TestTask.Timescale.SharedKernel.Domain.BaseModels;
 using TestTask.Timescale.SharedKernel.Domain.Results;
 
-namespace TestTask.Timescale.Domain.Aggregates.TimeScaleAggregate
+namespace TestTask.Timescale.Domain.Aggregates.RecordAggregate
 {
-    public class Record : Entity
+    public class Record : AggregateRoot
     {
         public Timestamp Date { get; }
 
@@ -44,8 +44,8 @@ namespace TestTask.Timescale.Domain.Aggregates.TimeScaleAggregate
             }
 
             return Result.Ok(new Record(
-                Timestamp.Create(date).Value, 
-                ExecutionDuration.Create(seconds).Value, 
+                Timestamp.Create(date).Value,
+                ExecutionDuration.Create(seconds).Value,
                 RecordValue.Create(value).Value));
         }
     }

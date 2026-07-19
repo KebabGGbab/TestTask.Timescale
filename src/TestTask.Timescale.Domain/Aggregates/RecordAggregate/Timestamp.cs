@@ -2,7 +2,7 @@
 using TestTask.Timescale.SharedKernel.Domain.BaseModels;
 using TestTask.Timescale.SharedKernel.Domain.Results;
 
-namespace TestTask.Timescale.Domain.Aggregates.TimeScaleAggregate
+namespace TestTask.Timescale.Domain.Aggregates.RecordAggregate
 {
     public class Timestamp : ValueObject
     {
