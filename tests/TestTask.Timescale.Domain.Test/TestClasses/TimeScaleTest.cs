@@ -51,8 +51,6 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
 
             Result<TimeScale> result = TimeScale.Create(records, fileName);
 
-            Assert.ContainsAll(records, result.Value.Records);
-            Assert.HasCount(2, result.Value.Records);
             Assert.AreEqual(fileName, result.Value.FileName);
         }
 

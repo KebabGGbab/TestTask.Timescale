@@ -10,11 +10,8 @@ namespace TestTask.Timescale.Domain.Aggregates.TimeScaleAggregate
         // Каких либо требований нет, поэтому запишу как обычную строку.
         public string FileName { get; }
 
-        public IReadOnlyCollection<Record> Records { get; }
-
-        private TimeScale(ICollection<Record> records, string fileName)
+        private TimeScale(string fileName)
         {
-            Records = records.ToArray().AsReadOnly();
             FileName = fileName;
         }
 
@@ -37,7 +34,7 @@ namespace TestTask.Timescale.Domain.Aggregates.TimeScaleAggregate
                 return Result.Fail<TimeScale>(canCreate.Errors);
             }
 
-            return Result.Ok(new TimeScale(records, fileName));
+            return Result.Ok(new TimeScale(fileName));
         }
     }
 }
