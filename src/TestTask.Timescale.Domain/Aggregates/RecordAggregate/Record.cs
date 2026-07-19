@@ -1,4 +1,5 @@
-﻿using TestTask.Timescale.SharedKernel.Domain.BaseModels;
+﻿using TestTask.Timescale.Domain.Dto;
+using TestTask.Timescale.SharedKernel.Domain.BaseModels;
 using TestTask.Timescale.SharedKernel.Domain.Results;
 
 namespace TestTask.Timescale.Domain.Aggregates.RecordAggregate
@@ -18,11 +19,11 @@ namespace TestTask.Timescale.Domain.Aggregates.RecordAggregate
             Value = value;
         }
 
-        public static Result CanCreate(DateTime date, double seconds, double value)
+        public static Result CanCreate(RecordDto dto)
         {
-            Result timestamp = Timestamp.CanCreate(date);
-            Result time = ExecutionDuration.CanCreate(seconds);
-            Result unitValue = RecordValue.CanCreate(value);
+            Result timestamp = Timestamp.CanCreate(dto.Date);
+            Result time = ExecutionDuration.CanCreate(dto.ExecutionTime);
+            Result unitValue = RecordValue.CanCreate(dto.Value);
 
             if (timestamp.IsFailure || time.IsFailure || unitValue.IsFailure)
             {
@@ -34,9 +35,9 @@ namespace TestTask.Timescale.Domain.Aggregates.RecordAggregate
             return Result.Ok();
         }
 
-        public static Result<Record> Create(DateTime date, double seconds, double value)
+        public static Result<Record> Create(RecordDto dto)
         {
-            Result canCreate = CanCreate(date, seconds, value);
+            Result canCreate = CanCreate(dto);
 
             if (canCreate.IsFailure)
             {
@@ -44,9 +45,9 @@ namespace TestTask.Timescale.Domain.Aggregates.RecordAggregate
             }
 
             return Result.Ok(new Record(
-                Timestamp.Create(date).Value,
-                ExecutionDuration.Create(seconds).Value,
-                RecordValue.Create(value).Value));
+                Timestamp.Create(dto.Date).Value, 
+                ExecutionDuration.Create(dto.ExecutionTime).Value, 
+                RecordValue.Create(dto.Value).Value));
         }
     }
 }
