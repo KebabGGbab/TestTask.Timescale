@@ -2,11 +2,11 @@
 {
     public abstract class Entity
     {
-        public virtual int Id { get; protected set; }
+        public virtual EntityId Id { get; protected set; } = new();
 
         public bool IsTransient()
         {
-            return Id == default;
+            return Id.Value == default;
         }
 
         public override bool Equals(object? obj)
@@ -40,7 +40,7 @@
         {
             if (!IsTransient())
             {
-                return (GetType().Name + Id).GetHashCode();
+                return (GetType().Name + Id.Value).GetHashCode();
             }
             else
             {

@@ -10,7 +10,7 @@ internal class MockEntity : Entity
 
     public MockEntity(int id, string name, int age)
     {
-        Id = id;
+        Id = new EntityId(id);
         Name = name;
         Age = age;
     }
@@ -20,6 +20,6 @@ internal class EntityMock2 : Entity
 {
     public EntityMock2(int id)
     {
-        Id = id;
+        Id = new EntityId(id);
     }
 }
