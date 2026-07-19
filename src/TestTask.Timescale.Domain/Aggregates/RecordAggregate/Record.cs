@@ -6,14 +6,17 @@ namespace TestTask.Timescale.Domain.Aggregates.RecordAggregate
 {
     public class Record : AggregateRoot
     {
+        public EntityId TimeScaleId { get; }
+
         public Timestamp Date { get; }
 
         public ExecutionDuration Time { get; }
 
         public RecordValue Value { get; }
 
-        private Record(Timestamp date, ExecutionDuration time, RecordValue value)
+        private Record(EntityId timeScaleId, Timestamp date, ExecutionDuration time, RecordValue value)
         {
+            TimeScaleId = timeScaleId;
             Date = date;
             Time = time;
             Value = value;
@@ -35,7 +38,7 @@ namespace TestTask.Timescale.Domain.Aggregates.RecordAggregate
             return Result.Ok();
         }
 
-        public static Result<Record> Create(RecordDto dto)
+        public static Result<Record> Create(EntityId timeScaleId, RecordDto dto)
         {
             Result canCreate = CanCreate(dto);
 
@@ -45,6 +48,7 @@ namespace TestTask.Timescale.Domain.Aggregates.RecordAggregate
             }
 
             return Result.Ok(new Record(
+                timeScaleId,
                 Timestamp.Create(dto.Date).Value, 
                 ExecutionDuration.Create(dto.ExecutionTime).Value, 
                 RecordValue.Create(dto.Value).Value));

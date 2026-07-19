@@ -1,5 +1,6 @@
 ﻿using TestTask.Timescale.Domain.Aggregates.RecordAggregate;
 using TestTask.Timescale.Domain.Dto;
+using TestTask.Timescale.SharedKernel.Domain.BaseModels;
 using TestTask.Timescale.SharedKernel.Domain.Results;
 
 namespace TestTask.Timescale.Domain.Test.TestClasses
@@ -38,7 +39,7 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
             ExecutionDuration expectedSeconds = ExecutionDuration.Create(dto.ExecutionTime).Value;
             RecordValue expectedValue = RecordValue.Create(dto.Value).Value;
 
-            Result<Record> result = Record.Create(dto);
+            Result<Record> result = Record.Create(new EntityId(), dto);
 
             Assert.AreEqual(expectedDate, result.Value.Date);
             Assert.AreEqual(expectedSeconds, result.Value.Time);
@@ -53,7 +54,7 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         {
             RecordDto dto = new(new DateTime(year, 01, 01, 0, 0, 0, DateTimeKind.Utc), seconds, value);
 
-            Result<Record> result = Record.Create(dto);
+            Result<Record> result = Record.Create(new EntityId(), dto);
 
             Assert.IsTrue(result.IsFailure);
         }
