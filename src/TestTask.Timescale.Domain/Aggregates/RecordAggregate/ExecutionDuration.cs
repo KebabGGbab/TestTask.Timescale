@@ -8,6 +8,11 @@ namespace TestTask.Timescale.Domain.Aggregates.RecordAggregate
     {
         public double Seconds { get; }
 
+        // Конструктор для EF
+        private ExecutionDuration()
+        {
+        }
+
         private ExecutionDuration(double seconds)
         {
             Seconds = seconds;

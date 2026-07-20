@@ -8,6 +8,11 @@ namespace TestTask.Timescale.Domain.Aggregates.RecordAggregate
     {
         public double Indicator { get; }
 
+        // Конструктор для EF
+        private RecordValue()
+        {
+        }
+
         private RecordValue(double indicator)
         {
             Indicator = indicator;

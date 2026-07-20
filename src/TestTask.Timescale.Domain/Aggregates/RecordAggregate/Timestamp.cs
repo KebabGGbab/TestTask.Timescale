@@ -12,6 +12,11 @@ namespace TestTask.Timescale.Domain.Aggregates.RecordAggregate
         // что часовой пояс не важен, так как формат соответствует UTC.
         public DateTime Value { get; set; }
 
+        // Конструктор для EF
+        private Timestamp()
+        {
+        }
+
         private Timestamp(DateTime value)
         {
             Value = value;

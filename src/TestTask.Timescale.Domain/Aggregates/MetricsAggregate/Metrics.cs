@@ -44,6 +44,13 @@ namespace TestTask.Timescale.Domain.Aggregates.MetricsAggregate
         /// </summary>
         public double MinValue { get; }
 
+        // Контруктор для EF
+#pragma warning disable CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора "required" или объявления значения, допускающего значение NULL.
+        private Metrics()
+#pragma warning restore CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора "required" или объявления значения, допускающего значение NULL.
+        {
+        }
+
         private Metrics(int timeScaleId, ICollection<RecordDto> records)
         {
             TimeScaleId = timeScaleId;
