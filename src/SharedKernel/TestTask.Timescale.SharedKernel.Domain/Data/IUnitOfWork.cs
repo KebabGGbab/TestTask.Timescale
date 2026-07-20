@@ -8,6 +8,8 @@
 
         Task RollbackTransactionAsync(CancellationToken cancellation = default);
 
+        Task SaveAsync(CancellationToken cancellation = default);
+
         bool HasActiveTransaction();
     }
 }
