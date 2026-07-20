@@ -89,7 +89,7 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
             Assert.AreEqual(4.5d, metrics.DeltaDate);
             Assert.AreEqual(firstDate, metrics.MinDate);
             Assert.AreEqual(1.5d, metrics.AvgExecutionDuration);
-            Assert.AreEqual(5.125d, metrics.AvgValue);
+            Assert.AreEqual(5.13d, metrics.AvgValue);
             Assert.AreEqual(3.85d, metrics.MedianValue);
             Assert.AreEqual(3.7d, metrics.MinValue);
             Assert.AreEqual(7.8d, metrics.MaxValue);

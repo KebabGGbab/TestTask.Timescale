@@ -58,9 +58,9 @@ namespace TestTask.Timescale.Domain.Aggregates.MetricsAggregate
             // Предупреждения null подавляются, потому что TimeScaleRecord не существовал бы с null в любом из значений
             MinDate = filteredRecords.First().Date;
             DeltaDate = (filteredRecords.Last().Date - MinDate).TotalSeconds;
-            AvgExecutionDuration = records.Average(record => record.ExecutionTime);
-            AvgValue = records.Average(record => record.Value);
-            MedianValue = CalculateMedian(filteredRecords);
+            AvgExecutionDuration = Math.Round(records.Average(record => record.ExecutionTime), 3, MidpointRounding.AwayFromZero);
+            AvgValue = Math.Round(records.Average(record => record.Value), 2, MidpointRounding.AwayFromZero);
+            MedianValue = Math.Round(CalculateMedian(filteredRecords), 2, MidpointRounding.AwayFromZero);
             MaxValue = records.Max(record => record.Value);
             MinValue = records.Min(record => record.Value);
         }
