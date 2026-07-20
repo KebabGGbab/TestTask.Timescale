@@ -6,7 +6,7 @@ namespace TestTask.Timescale.Domain.Aggregates.RecordAggregate
 {
     public class Record : AggregateRoot
     {
-        public EntityId TimeScaleId { get; }
+        public int TimeScaleId { get; }
 
         public Timestamp Date { get; }
 
@@ -14,7 +14,7 @@ namespace TestTask.Timescale.Domain.Aggregates.RecordAggregate
 
         public RecordValue Value { get; }
 
-        private Record(EntityId timeScaleId, Timestamp date, ExecutionDuration time, RecordValue value)
+        private Record(int timeScaleId, Timestamp date, ExecutionDuration time, RecordValue value)
         {
             TimeScaleId = timeScaleId;
             Date = date;
@@ -38,7 +38,7 @@ namespace TestTask.Timescale.Domain.Aggregates.RecordAggregate
             return Result.Ok();
         }
 
-        public static Result<Record> Create(EntityId timeScaleId, RecordDto dto)
+        public static Result<Record> Create(int timeScaleId, RecordDto dto)
         {
             Result canCreate = CanCreate(dto);
 

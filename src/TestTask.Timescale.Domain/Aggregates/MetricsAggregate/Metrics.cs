@@ -7,7 +7,7 @@ namespace TestTask.Timescale.Domain.Aggregates.MetricsAggregate
 {
     public class Metrics : AggregateRoot
     {
-        public EntityId TimeScaleId { get; }
+        public int TimeScaleId { get; }
 
         /// <summary>
         /// Дельта времени в секундах.
@@ -44,7 +44,7 @@ namespace TestTask.Timescale.Domain.Aggregates.MetricsAggregate
         /// </summary>
         public double MinValue { get; }
 
-        private Metrics(EntityId timeScaleId, ICollection<RecordDto> records)
+        private Metrics(int timeScaleId, ICollection<RecordDto> records)
         {
             TimeScaleId = timeScaleId;
             RecordDto[] filteredRecords = records.OrderBy(record => record.Date).ToArray();
@@ -77,7 +77,7 @@ namespace TestTask.Timescale.Domain.Aggregates.MetricsAggregate
             return Result.Ok();
         }
 
-        public static Result<Metrics> Create(EntityId timeScaleId, ICollection<RecordDto> records)
+        public static Result<Metrics> Create(int timeScaleId, ICollection<RecordDto> records)
         {
             Result canCreate = CanCreate(records);
 

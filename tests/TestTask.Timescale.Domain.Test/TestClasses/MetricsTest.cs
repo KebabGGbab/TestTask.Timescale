@@ -1,6 +1,5 @@
 ﻿using TestTask.Timescale.Domain.Aggregates.MetricsAggregate;
 using TestTask.Timescale.Domain.Dto;
-using TestTask.Timescale.SharedKernel.Domain.BaseModels;
 using TestTask.Timescale.SharedKernel.Domain.Results;
 
 namespace TestTask.Timescale.Domain.Test.TestClasses
@@ -37,7 +36,7 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
         {
             List<RecordDto> records = [];
 
-            Result<Metrics> result = Metrics.Create(new EntityId(), records);
+            Result<Metrics> result = Metrics.Create(0, records);
 
             Assert.IsTrue(result.IsFailure);
         }
@@ -52,7 +51,7 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
                 new RecordDto(new DateTime(2020, 01, 01, 0, 0, 3, DateTimeKind.Utc), 1.5d, 3.7d)
             ];
 
-            Metrics metrics = Metrics.Create(new EntityId(), records).Value;
+            Metrics metrics = Metrics.Create(0, records).Value;
 
             Assert.AreEqual(middleValue, metrics.MedianValue);
         }
@@ -69,7 +68,7 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
                 new RecordDto(new DateTime(2020, 01, 01, 0, 0, 4, 500, DateTimeKind.Utc), 1.5d, 7.8d)
             ];
 
-            Metrics metrics = Metrics.Create(new EntityId(), records).Value;
+            Metrics metrics = Metrics.Create(0, records).Value;
 
             Assert.AreEqual((firstMiddle + secondMiddle) / 2, metrics.MedianValue);
         }
@@ -85,7 +84,7 @@ namespace TestTask.Timescale.Domain.Test.TestClasses
                 new RecordDto(new DateTime(2020, 01, 01, 0, 0, 4, 500, DateTimeKind.Utc), 1.5d, 7.8d)
             ];
 
-            Metrics metrics = Metrics.Create(new EntityId(), records).Value;
+            Metrics metrics = Metrics.Create(0, records).Value;
 
             Assert.AreEqual(4.5d, metrics.DeltaDate);
             Assert.AreEqual(firstDate, metrics.MinDate);
