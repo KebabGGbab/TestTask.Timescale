@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using TestTask.Timescale.Application.Dto;
+using TestTask.Timescale.Domain.Dto;
 using TestTask.Timescale.SharedKernel.Domain.Results;
 
 namespace TestTask.Timescale.Application.Queries
@@ -10,7 +11,8 @@ namespace TestTask.Timescale.Application.Queries
         {
             ArgumentNullException.ThrowIfNull(services);
 
-            return services.AddScoped<IQueryHandler<GetFiltereredMetricsQuery, Result<IEnumerable<MetricsDto>>>, GetFiltereredMetricsQueryHandler>();
+            return services.AddScoped<IQueryHandler<GetValuesByFileNameAndOrderByDateQuary, Result<IEnumerable<RecordDto>>>, GetValuesByFileNameAndOrderByDateQuaryHandler>()
+                .AddScoped<IQueryHandler<GetFiltereredMetricsQuery, Result<IEnumerable<MetricsDto>>>, GetFiltereredMetricsQueryHandler>();
         }
     }
 }
