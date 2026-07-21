@@ -10,6 +10,8 @@
 
         Task<TimeScale?> GetByIdAsync(int id, CancellationToken cancellation = default);
 
+        Task<IEnumerable<TimeScale?>> GetByIdAsync(IEnumerable<int> ids, CancellationToken cancellation = default);
+
         Task<TimeScale?> GetByFileNameAsync(string fileName, CancellationToken cancellation = default);
     }
 }

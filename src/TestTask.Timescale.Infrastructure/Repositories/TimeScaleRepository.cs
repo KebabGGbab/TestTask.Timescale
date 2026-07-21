@@ -42,6 +42,13 @@ namespace TestTask.Timescale.Infrastructure.Repositories
                 .FindAsync([id], cancellation);
         }
 
+        public async Task<IEnumerable<TimeScale?>> GetByIdAsync(IEnumerable<int> ids, CancellationToken cancellation = default)
+        {
+            return await _db.TimeScales
+                .Where(x => ids.Contains(x.Id))
+                .ToListAsync(cancellation);
+        }
+
         public async Task<TimeScale?> GetByFileNameAsync(string fileName, CancellationToken cancellation = default)
         {
             return await _db.TimeScales
