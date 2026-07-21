@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TestTask.Timescale.Domain.Aggregates.MetricsAggregate;
+using TestTask.Timescale.SharedKernel.Domain.Specifications;
 
 namespace TestTask.Timescale.Infrastructure.Repositories
 {
@@ -35,25 +36,11 @@ namespace TestTask.Timescale.Infrastructure.Repositories
                 .FirstOrDefaultAsync(cancellation);
         }
 
-        public async Task<IEnumerable<Metrics>> GetByAvgExecutionDurationAsync(double avgExecutionDuration, CancellationToken cancellation = default)
+        public async Task<IEnumerable<Metrics>> GetByFilterAsync(ISpecification<Metrics> filter, CancellationToken cancellation = default)
         {
             return await _db.Metrics
-                .Where(x => x.AvgExecutionDuration == avgExecutionDuration)
-                .ToListAsync(cancellation);
-        }
-
-        public async Task<IEnumerable<Metrics>> GetByAvgValueAsync(double avgValue, CancellationToken cancellation = default)
-        {
-            return await _db.Metrics
-                .Where(x => x.AvgValue == avgValue)
-                .ToListAsync(cancellation);
-        }
-
-        public async Task<IEnumerable<Metrics>> GetByTimestampFirstRecordAsync(DateTime timestamp, CancellationToken cancellation = default)
-        {
-            return await _db.Metrics
-                .Where(x => x.MinDate == timestamp)
-                .ToListAsync(cancellation);
+                .Where(filter.ToExpression())
+                .ToListAsync();
         }
     }
 }
