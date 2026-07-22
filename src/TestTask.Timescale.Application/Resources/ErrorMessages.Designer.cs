@@ -61,6 +61,15 @@ namespace TestTask.Timescale.Application.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на The file does not exist. File name: &quot;{0}&quot;..
+        /// </summary>
+        internal static string FileNotExistError {
+            get {
+                return ResourceManager.GetString("FileNotExistError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Filters not applied..
         /// </summary>
         internal static string FiltersNotApplied {
