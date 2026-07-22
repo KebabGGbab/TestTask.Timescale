@@ -33,52 +33,34 @@ namespace TestTask.Timescale.Application.Queries
                 return Result.Ok<IEnumerable<MetricsDto>>([MetricsDto.From(metrics, query.FileName)]);
             }
 
-            ISpecification<Metrics>? specification = null;
+            SpecificationBuilder<Metrics> specificationBuilder = new();
 
             if (query.FirstDateMax.HasValue)
             {
-                specification = new FirstDateMaxSpecification(query.FirstDateMax.Value);
+                specificationBuilder.And(new FirstDateMaxSpecification(query.FirstDateMax.Value));
             }
             if (query.FirstDateMin.HasValue)
             {
-                FirstDateMinSpecification spec = new(query.FirstDateMin.Value);
-
-                specification = specification == null
-                    ? spec
-                    : specification.And(spec);
+                specificationBuilder.And(new FirstDateMinSpecification(query.FirstDateMin.Value));
             }
             if (query.AvgExecutionTimeMax.HasValue)
             {
-                AvgExecutionTimeMaxSpecification spec = new(query.AvgExecutionTimeMax.Value);
-
-                specification = specification == null
-                    ? spec
-                    : specification.And(spec);
+                specificationBuilder.And(new AvgExecutionTimeMaxSpecification(query.AvgExecutionTimeMax.Value));
             }
             if (query.AvgExecutionTimeMin.HasValue)
             {
-                AvgExecutionTimeMinSpecification spec = new(query.AvgExecutionTimeMin.Value);
-
-                specification = specification == null
-                    ? spec
-                    : specification.And(spec);
+                specificationBuilder.And(new AvgExecutionTimeMinSpecification(query.AvgExecutionTimeMin.Value));
             }
             if (query.AvgValueMax.HasValue)
             {
-                AvgValueMaxSpecification spec = new(query.AvgValueMax.Value);
-
-                specification = specification == null
-                    ? spec
-                    : specification.And(spec);
+                specificationBuilder.And(new AvgValueMaxSpecification(query.AvgValueMax.Value));
             }
             if (query.AvgValueMin.HasValue)
             {
-                AvgValueMinSpecification spec = new(query.AvgValueMin.Value);
-
-                specification = specification == null
-                    ? spec
-                    : specification.And(spec);
+                specificationBuilder.And(new AvgValueMinSpecification(query.AvgValueMin.Value));
             }
+
+            ISpecification<Metrics>? specification = specificationBuilder.Build();
 
             if (specification == null)
             {
