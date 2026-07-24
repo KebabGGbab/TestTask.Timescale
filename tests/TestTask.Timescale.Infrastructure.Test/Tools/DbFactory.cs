@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using TestTask.Timescale.Infrastructure.Test.Resources;
 
 namespace TestTask.Timescale.Infrastructure.Test.Tools
 {
@@ -50,11 +52,16 @@ namespace TestTask.Timescale.Infrastructure.Test.Tools
         private abstract class DbHandlerBase<T> 
             where T : DbContext
         {
+            private static readonly IConfigurationRoot s_config = new ConfigurationBuilder()
+                .AddUserSecrets<DbHandlerBase<T>>()
+                .Build();
+
             protected string ConnectionString { get; }
 
-            public DbHandlerBase(string connectionString)
+            public DbHandlerBase(string connectionStringKey)
             {
-                ConnectionString = connectionString;
+                ConnectionString = s_config.GetConnectionString(connectionStringKey) 
+                    ?? throw new InvalidOperationException(string.Format(ExceptionMessages.UserSecretNotFound, connectionStringKey));
             }
 
             public async Task InitializeAsync()
@@ -77,8 +84,8 @@ namespace TestTask.Timescale.Infrastructure.Test.Tools
 
         private abstract class AppDbHanderBase : DbHandlerBase<ApplicationDbContext>
         {
-            public AppDbHanderBase(string connectionString)
-                : base(connectionString)
+            public AppDbHanderBase(string connectionStringKey)
+                : base(connectionStringKey)
             { 
             }
 
@@ -107,9 +114,9 @@ namespace TestTask.Timescale.Infrastructure.Test.Tools
         // Cоздает котекст, который ДОЛЖЕН использоваться только для чтения в тестах
         private class ReadOnlyAppDbHandler : AppDbHanderBase
         {
-            private const string CONNECTION_STRING = "Host=localhost:5432;Database=TimeScaleReadOnlyDb;Username=postgres;Password=1564";
+            private const string CONNECTION_STRING_KEY = "TimeScaleReadOnlyDb";
             public ReadOnlyAppDbHandler() :
-                base(CONNECTION_STRING)
+                base(CONNECTION_STRING_KEY)
             { 
             }
         }
@@ -117,10 +124,10 @@ namespace TestTask.Timescale.Infrastructure.Test.Tools
         // Создает контекст, который может использоваться для записи.
         private class TransactionAppDbHandler : AppDbHanderBase
         {
-            private const string CONNECTIONSTRING = "Host=localhost:5432;Database=TimeScaleTransactionDb;Username=postgres;Password=1564";
+            private const string CONNECTION_STRING_KEY = "TimeScaleTransactionDb";
 
             public TransactionAppDbHandler()
-                : base(CONNECTIONSTRING)
+                : base(CONNECTION_STRING_KEY)
             { 
             }
 
@@ -136,10 +143,10 @@ namespace TestTask.Timescale.Infrastructure.Test.Tools
         // Создает контект, который может использоваться для тестирования кода, который использует транзакции
         private class RefreshingAppDbHander : AppDbHanderBase
         {
-            private const string CONNECTIONSTRING = "Host=localhost:5432;Database=TimeScaleRefreshingDb;Username=postgres;Password=1564";
+            private const string CONNECTION_STRING_KEY = "TimeScaleRefreshingDb";
 
             public RefreshingAppDbHander()
-                : base(CONNECTIONSTRING)
+                : base(CONNECTION_STRING_KEY)
             { }
 
             public async Task Refresh()
